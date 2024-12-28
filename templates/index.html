@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Domain Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #007991, #78ffd6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #37474F;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            background-color: #FFFFFF;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            color: #37474F;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #607D8B;
+        }
+
+        .input-section {
+            margin-top: 30px;
+        }
+
+        .input-section label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .input-section input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #CFD8DC;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .input-section button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2em;
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-section button:hover {
+            background-color: #E64A19;
+        }
+
+        .result-section {
+            margin-top: 20px;
+        }
+
+        .result-section h3 {
+            font-size: 1.5em;
+            color: #37474F;
+        }
+
+        .result-section p {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007991;
+        }
+
+        .result-section .error {
+            color: red;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #607D8B;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Phishing Domain Detection</h1>
+            <p>Enter a domain to check if it's phishing or safe.</p>
+        </header>
+        <main>
+            <form method="POST" action="/predict">
+                <div class="input-section">
+                    <label for="domain"><b>Domain Name</b></label>
+                    <input type="text" id="domain" name="domain" placeholder="Enter domain (e.g., example.com)" required>
+                    <button type="submit">Check</button>
+                </div>
+            </form>
+            {% if result %}
+            <div class="result-section">
+                <h3>Result:</h3>
+                <p>{{ result }}</p>
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="result-section error">
+                <h3>Error:</h3>
+                <p>{{ error }}</p>
+            </div>
+            {% endif %}
+        </main>
+        <footer>
+            <p>&copy; Phishing Detection Project</p>
+        </footer>
+    </div>
+</body>
+</html>
